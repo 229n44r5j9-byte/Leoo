@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى ميسي | الأفضل في التاريخ</title>
+    
+    <!-- Meta tags for Home Screen and Social Sharing -->
+    <meta property="og:title" content="إلى ميسي | الأفضل في التاريخ">
+    <meta property="og:description" content="اعتراف من عاشق للكرة بنفس طيبة وبساطة">
+    <meta property="og:image" content="https://i.ibb.co/fzhcSzJB/IMG-3732.jpg">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/fzhcSzJB/IMG-3732.jpg">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/fzhcSzJB/IMG-3732.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #080a0f;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            background: radial-gradient(circle at center, #111726 0%, #05070a 100%);
+        }
+
+        /* Ambient Glow Effects */
+        .glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(0, 162, 255, 0.12);
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glow-1 { top: 10%; left: 10%; }
+        .glow-2 { bottom: 10%; right: 10%; background: rgba(255, 215, 0, 0.08); }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 900px;
+            padding: 40px;
+            margin: 20px 0;
+            
+            /* Liquid Glass Effect */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        /* Slideshow Styling */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            object-fit: cover;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Text Content */
+        .text-content {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #d1d5db;
+            font-weight: 300;
+            margin-bottom: 30px;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            transition: opacity 0.8s ease;
+        }
+
+        /* Start Button */
+        .btn-start {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            outline: none;
+        }
+
+        .btn-start:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Cinematic Final Message */
+        .cinematic-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 2.5s ease;
+            margin-top: 20px;
+        }
+
+        .cinematic-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 2.2;
+            color: #f3f4f6;
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            margin-bottom: 40px;
+        }
+
+        .the-end {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #6b7280 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 2.5s ease;
+        }
+
+        .the-end.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Audio element hidden */
+        audio {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+                width: 95%;
+            }
+            .slideshow-container {
+                height: 320px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .text-content {
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+            .cinematic-text {
+                font-size: 1.25rem;
+            }
+            .the-end {
+                font-size: 2.3rem;
+                letter-spacing: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container">
+        <h1 id="main-title">كلمات من القلب إلى ميسي</h1>
+
+        <div class="slideshow-container" id="slideshow">
+            <img src="https://i.ibb.co/cSznjKdg/IMG-3728.jpg" class="slide active" alt="Messi">
+            <img src="https://i.ibb.co/tTDKkfhj/IMG-3729.jpg" class="slide" alt="Messi">
+            <img src="https://i.ibb.co/r2PznRb5/IMG-3730.jpg" class="slide" alt="Messi">
+            <img src="https://i.ibb.co/V0Ywx90M/IMG-3731.jpg" class="slide" alt="Messi">
+            <img src="https://i.ibb.co/fzhcSzJB/IMG-3732.jpg" class="slide" alt="Messi">
+            <img src="https://i.ibb.co/Z62P0BTr/IMG-3733.jpg" class="slide" alt="Messi">
+            <img src="https://i.ibb.co/jvTw2hZ1/IMG-3734.jpg" class="slide" alt="Messi">
+        </div>
+
+        <div class="text-content" id="text-display">
+            اضغط على زر بدء العرض لتبدأ الرحلة...
+        </div>
+
+        <button class="btn-start" id="start-btn" onclick="startShow()">بدء العرض</button>
+
+        <div class="cinematic-container" id="cinematic-section">
+            <div class="cinematic-text" id="final-text">
+               انك افضل لعبه في التاريخ مهم قالو عنك
+            </div>
+            <div class="the-end" id="the-end-text">THE END</div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" src="https://files.catbox.moe/8kk56y.mp3" preload="auto"></audio>
+
+    <script>
+        const texts = [
+            "أنا بقعد بيني وبين نفسي وبفكر، قد إيه الكورة دي كانت حاجة تانية خالص بوجودك.",
+            "وبحس بتأنيب الضمير وبزعل من نفسي قوي على كل مرة كسلت فيها أفتح الشاشة وأتفرج عليك وأستمتع بسحرك.",
+            "ساعات كتير بنحس إن الحجم ده من العظمة مستمر معانا ومش هيخلص، بس الحقيقة إننا ظلمنا نفسنا جداً لما ما استمتعناش بيك كلاعب وكأسطورة زي ما كان ينبغي للكرة إنها تتلعب.",
+            "كل لمسة وكل تحرك منك كان متعة صافية مش هتنكر ولا هترجع تاني بنفس البساطة والجمال ده.",
+            "كل كورة كنت بتلمسها كانت بتثبت إنك جاي من عالم تاني، عالم مش شبه اللي إحنا عايشين فيه.",
+            "كل لحظة كانت معاك في الملعب كانت عبارة عن تاريخ بيتكتب قدام عينينا من غير ما نحس بقيمته الكاملة وقتها.",
+            "والنهاية هي حقيقة واحدة مش هينفع حد يختلف عليها مهما كان..."
+        ];
+
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const textDisplay = document.getElementById('text-display');
+        const startBtn = document.getElementById('start-btn');
+        const audio = document.getElementById('bg-music');
+        const slideshow = document.getElementById('slideshow');
+        const mainTitle = document.getElementById('main-title');
+        const cinematicSection = document.getElementById('cinematic-section');
+        const theEndText = document.getElementById('the-end-text');
+
+        function startShow() {
+            startBtn.style.display = 'none';
+            audio.play().catch(e => console.log("Audio play error: ", e));
+
+            textDisplay.textContent = texts[0];
+            
+            // تم تعديل الوقت هنا إلى 11,000 مللي ثانية (11 ثانية)
+            const interval = setInterval(() => {
+                slides[currentIndex].classList.remove('active');
+                
+                currentIndex++;
+
+                if (currentIndex < slides.length) {
+                    slides[currentIndex].classList.add('active');
+                    
+                    // Fade text out and in
+                    textDisplay.style.opacity = 0;
+                    setTimeout(() => {
+                        textDisplay.textContent = texts[currentIndex];
+                        textDisplay.style.opacity = 1;
+                    }, 800);
+                } else {
+                    clearInterval(interval);
+                    showCinematicEnding();
+                }
+            }, 11000); // 11 ثانية لكل صورة ونص
+        }
+
+        function showCinematicEnding() {
+            slideshow.style.transition = 'opacity 2s ease';
+            slideshow.style.opacity = 0;
+            textDisplay.style.transition = 'opacity 2s ease';
+            textDisplay.style.opacity = 0;
+            mainTitle.style.transition = 'opacity 2s ease';
+            mainTitle.style.opacity = 0;
+
+            setTimeout(() => {
+                slideshow.style.display = 'none';
+                textDisplay.style.display = 'none';
+                mainTitle.style.display = 'none';
+
+                cinematicSection.style.display = 'block';
+                setTimeout(() => {
+                    cinematicSection.style.opacity = 1;
+                }, 100);
+
+                setTimeout(() => {
+                    theEndText.classList.add('show');
+                }, 4000);
+
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
